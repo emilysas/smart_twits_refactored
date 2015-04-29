@@ -31,7 +31,9 @@ SmartTwits aims to provide users with information about currently trending tweet
 ##My Changes
 Following the Makeathon I decided to try to make the front-end design a little cleaner. I incorporated bootstrap and tried to give the page as clean a feel as possible - not an easy job for an app that has so much text. The design still needs work, but currently looks like this:
 
-![Screenshot](/Screen Shot 2015-02-15 at 10.37.35.png?raw=true "ScreenShot")
+<div align="center">
+  <img width="90%" src="Screenshot.png">
+</div>
 
 ##Refactoring Process
 I have been working to refactor the API code. This is now much more concise, but it still needs a drastic reworking. I am looking into how I might use a design pattern such as the Strategy Pattern to achieve this.
