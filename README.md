@@ -28,6 +28,17 @@ SmartTwits aims to provide users with information about currently trending tweet
 * the trending tweets from users with the most followers
 * trending tweets that originated from media organisations
 
+##My Changes
+Following the Makeathon I decided to try to make the front-end design a little cleaner. I incorporated bootstrap and tried to give the page as clean a feel as possible - not an easy job for an app that has so much text. The design still needs work, but currently looks like this:
+
+![Screenshot](/Screen Shot 2015-02-15 at 10.37.35.png?raw=true "ScreenShot")
+
+##Refactoring Process
+I have been working to refactor the API code. This is now much more concise, but it still needs a drastic reworking. I am looking into how I might use a design pattern such as the Strategy Pattern to achieve this.
+
+##Future Intentions
+Having revisited the code following the makeathon, I realised that the classes need rethinking. I would like to redesign the backend logic as well as refactor the code that speaks to the API. I hope to try to use design patterns where relevant.
+
 ###Components
 The solution has two key elements;
 - a back end, that can operate on a set schedule (defaulted to 10 minutes), that retrieves the top trends and gathers associated information and writes it to flat files.
