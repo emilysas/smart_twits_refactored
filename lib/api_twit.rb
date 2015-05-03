@@ -27,6 +27,8 @@ MEDIA_GROUP = ['@BBCBreaking','@BBCNews',
 # trying to work out what everything is doing
 # Needs refactoring into different classes but I'm not sure
 # of the best way of going about it.
+# Potentially one class to get data from API
+# and one class to save it?
 # Systems design pattern?
 
 class APITwitter
@@ -58,12 +60,14 @@ class APITwitter
     end
   end
   
+  # 
   def refresh_all_twitter_data
     save_trends
     save_tweets_per_trend
     save_tweet_data
   end
 
+  # how does client.trends work?? Both appear to be unconnected reader methods
   def save_trends(id_g = LONDON)
     get_trend_data(client.trends(id=id_g))
     delete_files_from_directory(PATH_TRENDS)
