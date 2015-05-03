@@ -8,6 +8,9 @@ require 'json'
 require './helpers/api_twit_helper'
 require 'cronedit'
 
+
+# Why sometimes access constants directly and at others
+# pass in as arguments - which is better?
 PATH = './credentials.md'
 LONDON = 44418
 PATH_TRENDS = './data/trends/'
@@ -19,6 +22,12 @@ PATH_TWEETS_MEDIA = './data/tweets/media/'
 MEDIA_GROUP = ['@BBCBreaking','@BBCNews',
          '@guardian','@guardiannews',
         '@MailOnline','@Independent','@SkyNews']
+
+# This class is far too long, and it's too difficult
+# trying to work out what everything is doing
+# Needs refactoring into different classes but I'm not sure
+# of the best way of going about it.
+# Systems design pattern?
 
 class APITwitter
 
@@ -32,10 +41,14 @@ class APITwitter
     @trends = []
   end
 
-  def load_passes(path = PATH)
-    return Hash[*File.read(PATH).split(/[: \n]+/)]
+  # Reads a file that contails all the tokens/secret keys
+  # I think there's a better way of dealing with this
+  def load_passes(path)
+    Hash[*File.read(path).split(/[: \n]+/)]
   end
 
+  # Takes token/secret key values out of hash
+  # Don't like that this instantiates within the method
   def init_twit(hash_with_keys)
     Twitter::REST::Client.new do |config|
       config.consumer_key        = hash_with_keys["Consumer_Key(API_Key)"]
@@ -44,7 +57,7 @@ class APITwitter
       config.access_token_secret = hash_with_keys["Access_Token_Secret"]
     end
   end
-
+  
   def refresh_all_twitter_data
     save_trends
     save_tweets_per_trend
@@ -162,6 +175,5 @@ class APITwitter
     array_of_hashes.each { |el| top_retweeted << {:text => el[:text], :retweet => el[:retweet]} }
     top_retweeted_deduped = top_retweeted.uniq.sort { |x, y| x[:retweet] <=> y[:retweet] }.reverse[0..(number-1)]
   end
-
 
 end
